@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+apply from: "${rootProject.projectDir}/config/common-config.gradle"
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.firebase.firebase-perf'
+
+androidExtensions {
+    experimental = true
+}
+
+android {
+
+    defaultConfig {
+        applicationId "com.clean.architecture.sample"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    implementation(project(":core"), project(":features"), project(":domain"), project(":api"))
+
+    api kotlinCore
+    api multiDex
+
+    // Support
+    api support
+    api fragment
+    api startup
+
+    // ViewModels LiveData
+    api lifecycle.libs
+    kapt lifecycle.proc
+
+    // ViewModel
+    api viewmodel
+
+    // OkHttp + Retrofit
+    api networking.libs
+
+    // Timber
+    api utils.libs
+    kapt utils.libs
+
+    debugImplementation stetho
+
+    // Navigation
+    api navigation.libs
+
+
+    api koin.libs
+
+    // Live event
+    api "com.github.hadilq.liveevent:liveevent:1.2.0"
+
+    api baseTest
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+}
+repositories {
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    mavenCentral()
+}

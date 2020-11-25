@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+apply from: "${rootProject.projectDir}/config/common-config.gradle"
+
+dependencies {
+    implementation(
+            project(":domain"),
+            project(":core")
+    )
+
+    api kotlinCore
+
+    api networking.libs
+
+    // Timber
+    kapt utils.libs
+
+    // Stetho
+    debugImplementation stetho
+
+    api coroutines.libs
+
+    api lifecycle.libs
+
+    api koin.libs
+
+    api baseTest
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    mavenCentral()
+}

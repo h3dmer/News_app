@@ -1,0 +1,6 @@
+include ':features'
+include ":api"
+include ":domain"
+include ":core"
+include ":app"
+rootProject.name = "CleanArchitectureSample"

@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+apply from: "${rootProject.projectDir}/config/common-config.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+
+androidExtensions {
+    experimental = true
+}
+
+dependencies {
+    implementation(
+            project(":core"),
+            project(":api"),
+            project(":domain"),
+    )
+
+    api kotlinCore
+
+    api ankoCommons
+
+    // Support
+    api support
+    api fragment
+    api startup
+
+    // RxJava
+    api rxJava
+
+    // ViewModel
+    api viewmodel
+
+    // OkHttp + Retrofit
+    api networking.libs
+
+    // Timber
+    api utils.libs
+    kapt utils.libs
+
+    debugImplementation stetho
+
+    // Navigation
+    api navigation.libs
+
+    api koin.libs
+
+    api baseTest
+    api coroutines.libs
+    api coroutines.test
+
+    // Live event
+    api "com.github.hadilq.liveevent:liveevent:1.2.0"
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+//repositories {
+//    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+//    mavenCentral()
+//}

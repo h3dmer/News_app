@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply from: "${rootProject.projectDir}/config/common-config.gradle"
+
+dependencies {
+
+    api kotlinCore
+
+    // Support
+    api support
+
+    api koin.libs
+
+    api baseTest
+    implementation "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
